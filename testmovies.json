@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "title": "The Shawshank Redemption (1994)",
+        "rank": 1600,
+        "compared": []
+    },
+    {
+        "id": 2,
+        "title": "The Dark Knight (2008)",
+        "rank": 1600,
+        "compared": []
+    },
+    {
+        "id": 3,
+        "title": "Pulp Fiction (1994)",
+        "rank": 1600,
+        "compared": []
+    },
+    {
+        "id": 4,
+        "title": "The Lord of the Rings: The Return of the King (2003)",
+        "rank": 1600,
+        "compared": []
+    },
+    {
+        "id": 5,
+        "title": "Fight Club (1999)",
+        "rank": 1600,
+        "compared": []
+    },
+    {
+        "id": 6,
+        "title": "Star Wars: Episode V - The Empire Strikes Back (1980)",
+        "rank": 1600,
+        "compared": []
+    }
+]

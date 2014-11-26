@@ -30,12 +30,14 @@ def main():
             if movie_a['id'] in movie_b['compared'] or movie_b['id'] in movie_a['compared']:
                 continue
             print '(A) {0} vs. (B) {1}'.format(movie_a['title'], movie_b['title'])
-            winner = raw_input('Who wins? A or B or T (tie): ')
+            winner = raw_input('Who wins? A or B or T (tie) or S (skip): ')
             winner = winner.lower()
 
             wp_a = win_probability(movie_a['rank'], movie_b['rank'])
             wp_b = win_probability(movie_b['rank'], movie_a['rank'])
 
+            if winner == 's':
+                continue
             if winner == 'a':
                 nr_a = new_rating(movie_a['rank'], wp_a, 1)
                 nr_b = new_rating(movie_b['rank'], wp_b, 0)
@@ -52,6 +54,7 @@ def main():
             movie_a['rank'] = nr_a
             movie_b['rank'] = nr_b
 
+    open('testmovies.json', 'w').write(json.dumps(movies))
     pprint.pprint(movies)
 
 

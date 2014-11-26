@@ -4,6 +4,7 @@ Win probability: 1 / (10 ** ((opponent's rating - my rating) / 400) + 1)
 Scoring: 1 for a win, 0 for a loss, 0.5 for a draw
 New rating: old rating + (k constant * (scoring point - win probability))
 K constant: 8-16 for local, 24-32 for regional, etc. We can just use 20.
+
 Every movie should "fight" every other movie only once (to begin?).
     Any new movie added should go down the list fighting every other movie.
 """

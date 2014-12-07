@@ -3,7 +3,7 @@ TODO
 """
 
 
-import MySQLdb
+import MySQLdb, MySQLdb.cursors
 
 from bottle import route, run, template, debug, static_file
 import config
@@ -13,17 +13,42 @@ import json
 import pprint
 
 
-"""
-------------------------------
+"""------------------------------
 ROUTES
-------------------------------
-"""
+------------------------------"""
 """
 Main / Index
 """
 @route('/')
 def index():
     return template('templates/index')
+
+
+"""
+Movies
+
+TODO: Get user_id from session
+"""
+@route('/movies')
+def index():
+    con = mysql_connect()
+    with con:
+        c = con.cursor()
+        c.execute('SELECT id, title FROM movies ORDER BY title ASC')
+        movies_all = c.fetchall()
+        c.execute('SELECT movie_id FROM movies_users WHERE user_id = %s', (1,))
+        movies_users = c.fetchall()
+
+    movies_nic = []
+    movies_ic = []
+    for movie in movies_all:
+        if {'movie_id': movie['id']} in movies_users:
+            movies_ic.append({'id': movie['id'], 'title': movie['title'], 'in_collection': True})
+        else:
+            movies_nic.append({'id': movie['id'], 'title': movie['title'], 'in_collection': False})
+    movies = movies_nic + movies_ic
+
+    return template('templates/movies', movies=movies)
 
 
 """
@@ -44,11 +69,9 @@ def static_js(filename):
     return static_file(filename, root='./static/img')
 
 
-"""
-------------------------------
+"""------------------------------
 PRIVATE FUNCTIONS
-------------------------------
-"""
+------------------------------"""
 """
 MySQL Connector
 """

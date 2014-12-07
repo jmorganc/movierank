@@ -1,4 +1,4 @@
-%rebase('templates/layout.tpl', title='Home'.format(top_num), active_home='class="active"')
+%rebase('templates/layout.tpl', title='Home', active_home='class="active"')
         <div class="page-header">
             <h1>Home</h1>
         </div>

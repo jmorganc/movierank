@@ -1,4 +1,5 @@
 sftp-config.json
+movierank_conf.yml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

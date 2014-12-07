@@ -1,18 +1,70 @@
 """
-New movies start at 1600
-Win probability: 1 / (10 ** ((opponent's rating - my rating) / 400) + 1)
-Scoring: 1 for a win, 0 for a loss, 0.5 for a draw
-New rating: old rating + (k constant * (scoring point - win probability))
-K constant: 8-16 for local, 24-32 for regional, etc. We can just use 20.
-
-Every movie should "fight" every other movie only once (to begin?).
-    Any new movie added should go down the list fighting every other movie.
+TODO
 """
 
+
+import MySQLdb
+
+from bottle import route, run, template, debug, static_file
+import config
 
 import sys
 import json
 import pprint
+
+
+"""
+------------------------------
+ROUTES
+------------------------------
+"""
+"""
+Main / Index
+"""
+@route('/')
+def index():
+    return template('templates/index')
+
+
+"""
+Static file handlers
+"""
+@route('/js/<filename>')
+def static_js(filename):
+    return static_file(filename, root='./static/js')
+
+
+@route('/css/<filename>')
+def static_js(filename):
+    return static_file(filename, root='./static/css')
+
+
+@route('/img/<filename>')
+def static_js(filename):
+    return static_file(filename, root='./static/img')
+
+
+"""
+------------------------------
+PRIVATE FUNCTIONS
+------------------------------
+"""
+"""
+MySQL Connector
+"""
+def mysql_connect(host=config.opts['mysql']['host'], username=config.opts['mysql']['username'], password=config.opts['mysql']['password'], database=config.opts['mysql']['database']):
+    return MySQLdb.connect(host, username, password, database, cursorclass=MySQLdb.cursors.DictCursor)
+
+
+"""
+"""
+debug(True)
+run(relaoder=True)
+
+
+
+
+
 
 
 def main():

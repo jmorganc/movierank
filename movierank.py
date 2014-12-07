@@ -46,9 +46,9 @@ def index():
             movies_ic.append({'id': movie['id'], 'title': movie['title'], 'in_collection': True})
         else:
             movies_nic.append({'id': movie['id'], 'title': movie['title'], 'in_collection': False})
-    movies = movies_nic + movies_ic
+    #movies = movies_nic + movies_ic
 
-    return template('templates/movies', movies=movies)
+    return template('templates/movies', movies_nic=movies_nic, movies_ic=movies_ic)
 
 
 """
@@ -67,6 +67,11 @@ def static_js(filename):
 @route('/img/<filename>')
 def static_js(filename):
     return static_file(filename, root='./static/img')
+
+
+@route('/img/movies/<filename>')
+def static_js(filename):
+    return static_file(filename, root='./static/img/movies')
 
 
 """------------------------------

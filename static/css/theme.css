@@ -1,5 +1,10 @@
 div.movie {
+    width: 225px;
     padding: 5px;
     margin: 10px 0px 0px 0px;
     border: 1px solid #ccc;
+}
+
+div.bottom_margin {
+    margin-bottom: 20px;
 }
